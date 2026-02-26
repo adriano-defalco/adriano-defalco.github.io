@@ -48,7 +48,7 @@
         }
 
         nav .logo {
-            font-family: var(--serif); font-size: 1.2rem; font-weight: 600;
+            font-family: var(--serif); font-size: 1.35rem; font-weight: 600;
             color: var(--text); text-decoration: none; letter-spacing: -0.02em;
             cursor: pointer;
         }
@@ -97,47 +97,48 @@
             gap: 3rem; align-items: start; margin-bottom: 3rem;
         }
 
+        .photo-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
         .profile-photo {
             width: 200px; height: 240px; border-radius: 8px;
             object-fit: cover; background: var(--border); border: 1px solid var(--border);
         }
 
+        .photo-details {
+            text-align: center;
+        }
+
+        .photo-details .location {
+            font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.5rem;
+        }
+
+        .photo-links {
+            display: flex; gap: 1.25rem; justify-content: center;
+        }
+
+        .photo-links a {
+            font-size: 0.8rem; color: var(--text-light);
+            text-decoration: none; transition: color 0.2s;
+            letter-spacing: 0.02em;
+        }
+
+        .photo-links a:hover { color: var(--accent); opacity: 1; }
+
         .home-intro h1 {
-            font-family: var(--serif); font-size: 2.4rem; font-weight: 600;
+            font-family: var(--serif); font-size: 1.9rem; font-weight: 600;
             letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.2;
         }
 
-        .home-intro .subtitle { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 0.3rem; }
-        .home-intro .location { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem; }
+        .home-intro .subtitle { font-size: 1.1rem; color: var(--text); font-weight: 400; margin-bottom: 0.3rem; }
 
-        .social-links { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-
-        .social-links a {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            font-size: 0.8rem; font-weight: 400; color: var(--accent);
-            padding: 0.35rem 0.8rem; border: 1px solid var(--border);
-            border-radius: 100px; transition: all 0.2s;
-        }
-
-        .social-links a:hover {
-            background: var(--accent-light); border-color: var(--accent); opacity: 1;
-        }
-
-        .home-bio { margin-top: 2rem; }
+        .home-bio { margin-top: 0.5rem; }
         .home-bio p { font-size: 1rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 1rem; }
         .home-bio a { text-decoration: underline; text-underline-offset: 2px; }
-
-        .fields-box {
-            margin-top: 2rem; padding: 1.25rem 1.5rem;
-            background: var(--accent-light); border-radius: 8px; border-left: 3px solid var(--accent);
-        }
-
-        .fields-box .label {
-            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
-            color: var(--accent); font-weight: 500; margin-bottom: 0.4rem;
-        }
-
-        .fields-box p { font-size: 0.95rem; color: var(--text-mid); }
 
         .contact-line { margin-top: 2rem; font-size: 0.92rem; color: var(--text-mid); }
 
@@ -149,45 +150,46 @@
         /* ── SECTIONS ── */
         .section-label {
             font-family: var(--serif); font-size: 1.8rem; font-weight: 600;
-            letter-spacing: -0.01em; margin-bottom: 2.5rem;
+            letter-spacing: -0.01em; margin-bottom: 1.5rem;
             padding-bottom: 0.75rem; border-bottom: 2px solid var(--text); display: inline-block;
         }
 
         .subsection-label {
-            font-family: var(--serif); font-size: 1.2rem; font-weight: 600;
-            color: var(--text); margin-bottom: 1.5rem; margin-top: 3rem;
+            font-family: var(--serif); font-size: 1rem; font-weight: 600;
+            color: var(--text); margin-bottom: 1rem; margin-top: 2rem;
         }
         .subsection-label:first-of-type { margin-top: 0; }
 
         /* ── PAPER CARDS ── */
         .paper {
-            margin-bottom: 2rem; padding: 1.5rem;
+            margin-bottom: 1.25rem; padding: 1.1rem 1.3rem;
             background: var(--card-bg); border: 1px solid var(--border);
             border-radius: 8px; transition: border-color 0.3s, box-shadow 0.3s;
         }
         .paper:hover { border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
 
         .paper-title {
-            font-family: var(--serif); font-size: 1.1rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.3rem;
+            font-family: var(--serif); font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.2rem;
         }
         .paper-title a { color: var(--text); text-decoration: none; }
         .paper-title a:hover { color: var(--accent); opacity: 1; }
 
-        .paper-authors { font-size: 0.88rem; color: var(--text-mid); margin-bottom: 0.4rem; }
+        .paper-authors { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 0.3rem; }
 
-        .paper-venue { font-size: 0.85rem; color: var(--accent); font-weight: 400; margin-bottom: 0.75rem; }
+        .paper-venue { font-size: 0.8rem; color: var(--accent); font-weight: 400; margin-bottom: 0.5rem; }
 
         .paper-award {
-            display: inline-block; font-size: 0.75rem; color: #9A6700;
-            background: #FFF8E1; padding: 0.2rem 0.65rem;
-            border-radius: 100px; margin-bottom: 0.75rem; font-weight: 400;
+            display: inline-block; font-size: 0.68rem; color: var(--text-light);
+            background: none; padding: 0;
+            border-radius: 0; margin-bottom: 0.4rem; font-weight: 300;
+            font-style: italic;
         }
 
-        .paper-links { display: flex; gap: 0.6rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .paper-links { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
 
         .paper-links a {
-            font-size: 0.75rem; font-weight: 400; color: var(--accent);
-            padding: 0.25rem 0.7rem; border: 1px solid var(--border);
+            font-size: 0.7rem; font-weight: 400; color: var(--accent);
+            padding: 0.2rem 0.6rem; border: 1px solid var(--border);
             border-radius: 4px; transition: all 0.2s;
         }
         .paper-links a:hover { background: var(--accent-light); border-color: var(--accent); opacity: 1; }
@@ -195,45 +197,45 @@
         .paper-abstract { margin-top: 0.5rem; }
 
         .abstract-toggle {
-            font-size: 0.8rem; color: var(--accent); cursor: pointer;
+            font-size: 0.75rem; color: var(--accent); cursor: pointer;
             border: none; background: none; font-family: var(--sans);
             font-weight: 400; padding: 0; transition: opacity 0.2s;
         }
         .abstract-toggle:hover { opacity: 0.7; }
 
         .abstract-text {
-            display: none; margin-top: 0.75rem; padding: 1rem 1.25rem;
+            display: none; margin-top: 0.5rem; padding: 0.75rem 1rem;
             background: #F8F7F5; border-radius: 6px;
-            font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;
+            font-size: 0.8rem; color: var(--text-mid); line-height: 1.7;
         }
         .abstract-text.open { display: block; }
 
         /* ── WIP ── */
         .wip-item {
-            padding: 1.25rem 1.5rem; background: var(--card-bg);
-            border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem;
+            padding: 0.9rem 1.3rem; background: var(--card-bg);
+            border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem;
         }
-        .wip-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; font-style: italic; margin-bottom: 0.25rem; }
-        .wip-authors { font-size: 0.85rem; color: var(--text-light); }
+        .wip-title { font-family: var(--serif); font-size: 0.95rem; font-weight: 400; font-style: italic; margin-bottom: 0.2rem; }
+        .wip-authors { font-size: 0.8rem; color: var(--text-light); }
 
         /* ── TEACHING ── */
-        .teaching-group { margin-bottom: 2.5rem; }
+        .teaching-group { margin-bottom: 1.5rem; }
 
         .teaching-level {
-            font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
-            margin-bottom: 1rem; color: var(--text);
+            font-family: var(--serif); font-size: 0.9rem; font-weight: 600;
+            margin-bottom: 0.5rem; color: var(--text);
         }
 
         .teaching-item {
             display: flex; justify-content: space-between; align-items: baseline;
-            padding: 0.9rem 0; border-bottom: 1px solid var(--border); gap: 1rem;
+            padding: 0.6rem 0; border-bottom: 1px solid var(--border); gap: 1rem;
         }
         .teaching-item:last-child { border-bottom: none; }
 
-        .teaching-course { font-size: 0.95rem; color: var(--text-mid); }
+        .teaching-course { font-size: 0.85rem; color: var(--text-mid); }
         .teaching-course strong { font-weight: 400; color: var(--text); }
 
-        .teaching-years { font-size: 0.82rem; color: var(--text-light); white-space: nowrap; }
+        .teaching-years { font-size: 0.75rem; color: var(--text-light); white-space: nowrap; }
 
         /* ── FOOTER ── */
         footer {
@@ -253,14 +255,42 @@
             }
             nav .nav-links.open { display: flex; }
             .home-header { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+            .photo-column { align-items: center; }
             .profile-photo { width: 160px; height: 200px; margin: 0 auto; }
-            .social-links { justify-content: center; }
+            .primary-links { justify-content: center; }
             .container { padding: 0 1.25rem; }
             .teaching-item { flex-direction: column; gap: 0.2rem; }
         }
     </style>
 </head>
 <body>
+
+<script>
+    function showPage(name) {
+        document.querySelectorAll('.page').forEach(p => {
+            p.classList.remove('active');
+            p.style.animation = 'none';
+        });
+        const target = document.getElementById('page-' + name);
+        target.classList.add('active');
+        target.offsetHeight;
+        target.style.animation = 'fadeIn 0.5s ease forwards';
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        const activeLink = document.querySelector('.nav-links a[data-page="' + name + '"]');
+        if (activeLink) activeLink.classList.add('active');
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) navLinks.classList.remove('open');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return false;
+    }
+
+    function toggleAbstract(btn) {
+        const text = btn.nextElementSibling;
+        const isOpen = text.classList.contains('open');
+        text.classList.toggle('open');
+        btn.textContent = isOpen ? '▸ Abstract' : '▾ Abstract';
+    }
+</script>
 
 <!-- NAV -->
 <nav>
@@ -279,17 +309,20 @@
 <div id="page-home" class="page active">
     <div class="container">
         <div class="home-header">
-            <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SRvBJ7D2fHm2C-mWzDuJ5ZZp0HfoV2IEyfnBKPfoTkMH2DcFbIvzIpvmTLX5K6m9suSmgoND-29A09SyhsfpusTCCvEmzsArnnEoXql7Fzx2uoJN3Sugt62s5C9eVi7780-4UnZ0VWXpyvZbM84wPEsWkiyo5ba4DT2CEfksQg8ngtTxFR845Mxpw8vGXGkIdi4obvoEqibR2j26J5SKxygXkK-zxtjKoGj66Y=w1280" alt="Adriano De Falco" class="profile-photo">
-            <div class="home-intro">
-                <h1>Adriano De Falco</h1>
-                <p class="subtitle">Post-Doc Fellow, University of Bologna</p>
-                <p class="location">Bologna, Italy</p>
-                <div class="social-links">
-                    <a href="mailto:adriano.defalco@eui.eu">✉ Email</a>
-                    <a href="https://bsky.app/profile/adridefax.bsky.social" target="_blank">🦋 Bluesky</a>
-                    <a href="https://x.com/adridefax" target="_blank">𝕏 Twitter</a>
-                    <a href="https://drive.google.com/file/d/18_hGmzxaTQCdsQZabAWDjHurd7lc3fLQ/view" target="_blank">📄 CV</a>
+            <div class="photo-column">
+                <img src="Foto%201.jpg" alt="Adriano De Falco" class="profile-photo">
+                <div class="photo-details">
+                    <p class="location">Bologna, Italy</p>
+                    <div class="photo-links">
+                        <a href="mailto:adriano.defalco@eui.eu">✉ Email</a>
+                        <a href="https://drive.google.com/file/d/18_hGmzxaTQCdsQZabAWDjHurd7lc3fLQ/view" target="_blank">📄 CV</a>
+                        <a href="https://bsky.app/profile/adridefax.bsky.social" target="_blank">🦋 Bluesky</a>
+                        <a href="https://x.com/adridefax" target="_blank">𝕏 Twitter</a>
+                    </div>
                 </div>
+            </div>
+            <div class="home-intro">
+                <p class="subtitle">Post-Doc Fellow, University of Bologna</p>
             </div>
         </div>
 
@@ -301,13 +334,11 @@
                 and <a href="https://sites.google.com/site/tfcrossley/" target="_blank">Thomas Crossley</a>.
             </p>
             <p>
+                My research lies at the intersection of labor, education, and family economics. Here is my <a href="https://scholar.google.com/citations?user=eJzP-fUAAAAJ&hl=en" target="_blank">Google Scholar</a> profile.
+            </p>
+            <p>
                 I will join Lund University as an <a href="https://www.lunduniversity.lu.se/adriano-de-falco" target="_blank">Assistant Professor</a> in September.
             </p>
-        </div>
-
-        <div class="fields-box">
-            <div class="label">Research Interests</div>
-            <p>Labor Economics · Education Economics · Family Economics</p>
         </div>
 
         <div class="contact-line">
@@ -330,7 +361,7 @@
             <div class="paper-authors">with <a href="https://www.yannickreichlin.eu/home" target="_blank">Yannick Reichlin</a></div>
             <div class="paper-venue">Forthcoming in <em>The Economic Journal</em></div>
             <div class="paper-links">
-                <a href="https://drive.google.com/file/d/11wOi9GYDstmmHZzdkPuT5dkMwFbYNI9Z/view" target="_blank">Working Paper</a>
+                <a href="papers/grants-vs-loans.pdf" target="_blank">Paper</a>
                 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4581235" target="_blank">SSRN</a>
                 <a href="https://lafonte.eui.eu/2025/03/28/grants-versus-loans-how-financial-aid-shapes-degree-programme-choice/" target="_blank">EUI Blog</a>
             </div>
@@ -346,10 +377,10 @@
 
         <div class="paper">
             <div class="paper-title">
-                <a href="https://drive.google.com/file/d/1DzgwqtPDKE2RWK3pH0TJO4KNipj9B-fN/view?usp=drive_link" target="_blank">Recruiting Better Teachers? Evidence from a Higher Education Reform in Chile</a>
+                <a href="papers/recruiting-better-teachers.pdf" target="_blank">Recruiting Better Teachers? Evidence from a Higher Education Reform in Chile</a>
             </div>
             <div class="paper-authors">with <a href="https://benjaminhattemer.com/" target="_blank">Benjamin Hattemer</a> &amp; <a href="https://sofiasierrav.com/" target="_blank">Sofia Sierra Vasquez</a></div>
-            <div class="paper-award">🏆 Winner of the Luis Toharia Grants (XVI Labour Economics Meeting)</div>
+            <div class="paper-award">Winner of the <a href="https://www.aeet.eu/en/becas-luis-toharia/" target="_blank" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Luis Toharia Grants</a> (XVI Labour Economics Meeting)</div>
             <div class="paper-links">
                 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4874361" target="_blank">SSRN</a>
                 <a href="https://lafonte.eui.eu/2024/10/10/shaping-future-generations-analysing-teacher-recruitment-reform-in-chile/" target="_blank">EUI Blog</a>
@@ -364,7 +395,7 @@
 
         <div class="paper">
             <div class="paper-title">
-                <a href="https://drive.google.com/file/d/130eRLFvKg4wNATzU0Z1ARYEpt5i-OtH2/view?usp=drive_link" target="_blank">Sibship Size and Leaving the Parental Home</a>
+                <a href="papers/sibship-size.pdf" target="_blank">Sibship Size and Leaving the Parental Home</a>
             </div>
             <div class="paper-authors">with <a href="https://sites.google.com/view/emoracci/" target="_blank">Elia Moracci</a> &amp; <a href="https://albertoventurin.github.io/" target="_blank">Alberto Venturin</a></div>
             <div class="paper-venue">Revision requested by <em>Demography</em></div>
@@ -381,17 +412,22 @@
 
         <div class="paper">
             <div class="paper-title">
-                <a href="https://drive.google.com/file/d/186NoNPEmle_yIFUWzZqZWJ37FprTHWqP/view?usp=drive_link" target="_blank">Effort and Retention among Teachers: Evidence from a Skills-Based Incentive Contract</a>
+                <a href="papers/fablab-stem.pdf" target="_blank">Innovative Learn-by-Doing Digital Education and Attitudes towards STEM: an RCT in Italian High Schools</a>
             </div>
+            <div class="paper-authors">with <a href="https://www.alicedominici.com/" target="_blank">Alice Dominici</a>, <a href="https://www.martinaferracane.com/" target="_blank">Martina Ferracane</a> &amp; <a href="https://www.unibs.it/it/ugov/person/211024" target="_blank">Giovanni Abbiati</a></div>
             <div class="paper-abstract">
                 <button class="abstract-toggle" onclick="toggleAbstract(this)">▸ Abstract</button>
                 <div class="abstract-text">
-                    This paper examines the effects of a skills-based incentive contract on teacher productivity in Chile. The reform introduced a structured career ladder in public schools, linking salary progression to performance on assessments of pedagogical and subject-matter skills. Using administrative data and a dynamic difference-in-differences design, I find that the policy led to sizable gains in teacher value-added, equivalent to 25–40% of a standard deviation, with larger effects in mathematics than in reading. In addition, the reform reduced early-career attrition.
+                    We conducted a randomized controlled trial to test the effectiveness of creative STEM activities on the propensity to enrol in a STEM university course and career aspirations on a sample of 710 high school students in Italy. The activities covered courses on 3D printing, laser cutting, and programming, and were taught by FabLabs, non-profit digital fabrication laboratories with an innovative pedagogical approach grounded in learn-by-doing, problem-solving skills, and creativity. We find that access to these courses increased students' intentions to pursue STEM majors at university and STEM careers, possibly through an increased STEM self-efficacy, namely students' beliefs in their ability to pursue STEM studies.
                 </div>
             </div>
         </div>
 
         <h3 class="subsection-label">Work in Progress</h3>
+
+        <div class="wip-item">
+            <div class="wip-title">Retention among Teachers: Evidence from a Skills-Based Incentive Contract</div>
+        </div>
 
         <div class="wip-item">
             <div class="wip-title">Profiling in Active Labour Market Policy: Evaluating Italy's New System for Sorting Job Seekers</div>
@@ -404,7 +440,7 @@
 <div id="page-teaching" class="page">
     <div class="container">
         <h2 class="section-label">Teaching</h2>
-        <p style="font-size:0.95rem; color: var(--text-mid); margin-bottom: 2.5rem;">Teaching Assistant positions held at various institutions.</p>
+        <p style="font-size: 0.82rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; margin-top: -0.5rem;">Teaching Assistant</p>
 
         <div class="teaching-group">
             <h3 class="teaching-level">Ph.D. Level</h3>
@@ -448,31 +484,6 @@
 <footer>
     <p>&copy; 2025 Adriano De Falco</p>
 </footer>
-
-<script>
-    function showPage(name) {
-        document.querySelectorAll('.page').forEach(p => {
-            p.classList.remove('active');
-            p.style.animation = 'none';
-        });
-        const target = document.getElementById('page-' + name);
-        target.classList.add('active');
-        target.offsetHeight;
-        target.style.animation = 'fadeIn 0.5s ease forwards';
-        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        document.querySelector('.nav-links a[data-page="' + name + '"]').classList.add('active');
-        document.querySelector('.nav-links').classList.remove('open');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return false;
-    }
-
-    function toggleAbstract(btn) {
-        const text = btn.nextElementSibling;
-        const isOpen = text.classList.contains('open');
-        text.classList.toggle('open');
-        btn.textContent = isOpen ? '▸ Abstract' : '▾ Abstract';
-    }
-</script>
 
 </body>
 </html>
