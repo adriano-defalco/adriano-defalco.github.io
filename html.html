@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adriano De Falco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f1;
+    --bg-alt: #eeeae1;
+    --fg: #161616;
+    --dim: #6b655d;
+    --accent: #a6382a;
+    --line: #161616;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    font-size: 13px; line-height: 1.7;
+    color: var(--fg); background: var(--bg);
+    font-weight: 400; -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: background 0.08s linear; }
+  a:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.85rem 2rem; border-bottom: 1px solid var(--line);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+    position: sticky; top: 0; background: var(--bg); z-index: 100;
+  }
+  .topbar .brand { font-weight: 500; letter-spacing: 0.1em; cursor: pointer; text-decoration: none; color: var(--fg); }
+  .topbar .brand:hover { background: transparent; color: var(--accent); }
+  .topbar nav a {
+    margin-left: 1.8rem; text-decoration: none; cursor: pointer;
+    color: var(--dim); transition: color 0.1s;
+  }
+  .topbar nav a:hover { background: transparent; color: var(--accent); text-decoration: none; }
+  .topbar nav a.active { color: var(--fg); }
+  .topbar nav a.active::before { content: "■ "; color: var(--accent); font-size: 8px; vertical-align: middle; }
+  @media (max-width: 560px) {
+    .topbar { padding: 0.75rem 1rem; font-size: 10px; }
+    .topbar nav a { margin-left: 1rem; }
+  }
+
+  main { max-width: 900px; margin: 0 auto; padding: 3.5rem 2.5rem 6rem; }
+  @media (max-width: 560px) { main { padding: 2rem 1.25rem 4rem; } }
+
+  .page { display: none; animation: fadeIn 0.35s ease forwards; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1.25rem; }
+
+  h1 { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 1.35rem; letter-spacing: 0; line-height: 1.2; margin-bottom: 0.5rem; }
+
+  .role { font-size: 14px; color: var(--fg); margin-bottom: 2.75rem; letter-spacing: 0.02em; }
+  .role .sep { color: var(--dim); margin: 0 0.5rem; }
+
+  .hero { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start; margin-bottom: 2.75rem; }
+  @media (max-width: 560px) { .hero { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+  .photo { width: 220px; height: 275px; object-fit: cover; object-position: top; filter: grayscale(25%) contrast(1.04); border: 1px solid var(--line); display: block; }
+  @media (max-width: 560px) { .photo { width: 140px; height: 175px; } }
+
+  .photo-caption { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--dim); margin-top: 0.6rem; display: flex; justify-content: space-between; align-items: baseline; }
+
+  .photo-links { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+  .photo-links a {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    text-decoration: none; color: var(--fg); padding: 2px 0;
+    display: inline-block; width: fit-content;
+  }
+  .photo-links a:hover { background: var(--fg); color: var(--bg); padding: 2px 6px; }
+
+  .bio p { margin-bottom: 0.9rem; font-size: 13.5px; line-height: 1.75; }
+  .bio p:last-child { margin-bottom: 0; }
+
+  .contact-line { margin-top: 2.5rem; font-size: 12px; color: var(--fg); padding-top: 1.25rem; border-top: 1px solid var(--line); }
+  .contact-line .label { color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; display: block; margin-bottom: 0.4rem; }
+
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 0.65rem; margin-bottom: 0.25rem; }
+  .section-head .label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; font-weight: 500; }
+  .section-head .num { color: var(--dim); font-size: 10.5px; letter-spacing: 0.15em; }
+
+  .subhead { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500; color: var(--dim); margin: 2.25rem 0 0.5rem; }
+
+  .paper { padding: 1.1rem 0; border-bottom: 1px dashed rgba(22,22,22,0.3); }
+  .paper:last-child { border-bottom: none; }
+  .paper-title { font-size: 12px; font-weight: 500; line-height: 1.45; margin-bottom: 0.4rem; }
+  .paper-title a { text-decoration: none; border-bottom: 1px solid var(--fg); padding-bottom: 1px; }
+  .paper-title a:hover { background: var(--fg); color: var(--bg); }
+
+  .paper-meta { font-size: 10px; color: var(--dim); letter-spacing: 0.02em; margin-bottom: 0.2rem; }
+  .paper-meta a { color: var(--dim); }
+
+  .paper-venue { font-size: 10.5px; color: var(--accent); font-style: italic; margin-bottom: 0.5rem; }
+  .paper-venue em { font-style: italic; }
+
+  .paper-award { font-size: 10px; color: var(--dim); font-style: italic; margin: 0.4rem 0; }
+  .paper-award a { color: var(--dim); }
+
+  .paper-links { display: flex; gap: 0.5rem; margin-top: 0.55rem; flex-wrap: wrap; }
+  .paper-links a { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.15em; padding: 2px 7px; border: 1px solid var(--line); text-decoration: none; font-weight: 500; }
+  .paper-links a:hover { background: var(--fg); color: var(--bg); }
+
+  details { margin-top: 0.7rem; }
+  details summary { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; cursor: pointer; color: var(--fg); list-style: none; user-select: none; font-weight: 500; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: "[ + ] "; color: var(--accent); font-weight: 400; }
+  details[open] summary::before { content: "[ − ] "; }
+  details[open] summary { margin-bottom: 0.65rem; }
+  details p { font-size: 11px; line-height: 1.7; color: var(--fg); padding: 0.75rem 1rem; border-left: 2px solid var(--line); background: var(--bg-alt); }
+
+  .wip { padding: 1rem 0; border-bottom: 1px dashed rgba(22,22,22,0.3); }
+  .wip:last-child { border-bottom: none; }
+  .wip-title { font-size: 13px; font-style: italic; margin-bottom: 0.25rem; }
+  .wip-meta { font-size: 11px; color: var(--dim); }
+
+  .teaching-note { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--dim); margin-top: -0.25rem; margin-bottom: 2rem; }
+  .teaching-group { margin-bottom: 1.75rem; }
+  .teaching-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px dashed rgba(22,22,22,0.25); font-size: 12.5px; align-items: baseline; }
+  .teaching-row:last-child { border-bottom: none; }
+  .teaching-row .course strong { font-weight: 500; }
+  .teaching-row .meta { color: var(--dim); font-size: 11px; margin-top: 0.1rem; display: block; }
+  .teaching-row .years { font-size: 10.5px; color: var(--dim); white-space: nowrap; letter-spacing: 0.08em; }
+
+  footer { margin-top: 5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + name);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.topbar nav a').forEach(a => a.classList.remove('active'));
+    const activeLink = document.querySelector('.topbar nav a[data-page="' + name + '"]');
+    if (activeLink) activeLink.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C6E4KQTNTH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C6E4KQTNTH');
+</script>
+
+<div class="topbar">
+  <a class="brand" onclick="showPage('home')">Adriano De Falco</a>
+  <nav>
+    <a onclick="showPage('home')" data-page="home" class="active">Home</a>
+    <a onclick="showPage('research')" data-page="research">Research</a>
+    <a onclick="showPage('teaching')" data-page="teaching">Teaching</a>
+  </nav>
+</div>
+
+<main>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="role">Post-Doc Fellow<span class="sep">/</span>University of Bologna</div>
+
+  <div class="hero">
+    <div>
+      <img src="photo.jpg" alt="Adriano De Falco" class="photo">
+      <div class="photo-caption">
+        <span>Bologna, IT</span>
+        <span>2025</span>
+      </div>
+      <div class="photo-links">
+        <a href="mailto:adriano.defalco@eui.eu">Email</a>
+        <a href="cv.pdf" target="_blank">CV</a>
+        <a href="https://bsky.app/profile/adridefax.bsky.social" target="_blank">Bluesky</a>
+        <a href="https://x.com/adridefax" target="_blank">Twitter</a>
+      </div>
+    </div>
+    <div class="bio">
+      <p>Welcome! I am a Post-Doc fellow at the University of Bologna. I received my Ph.D. from the <a href="https://www.eui.eu/en/home" target="_blank">European University Institute</a> in January 2025. I worked under the supervision of <a href="http://www.andreaichino.it/" target="_blank">Andrea Ichino</a> and <a href="https://sites.google.com/site/tfcrossley/" target="_blank">Thomas Crossley</a>.</p>
+      <p>My research lies at the intersection of labor, education, and family economics. Here is my <a href="https://scholar.google.com/citations?user=eJzP-fUAAAAJ&hl=en" target="_blank">Google Scholar</a> profile.</p>
+      <p>I will join Lund University as an <a href="https://www.lunduniversity.lu.se/adriano-de-falco" target="_blank">Assistant Professor</a> in September.</p>
+    </div>
+  </div>
+
+  <div class="contact-line">
+    <span class="label">Contact</span>
+    adriano.defalco [at] eui.eu &nbsp;·&nbsp; adriano.defalco [at] unibo.it
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div id="page-research" class="page">
+  <div class="section-head">
+    <span class="label">§ Research</span>
+    
+  </div>
+
+  <h3 class="subhead">Publications</h3>
+
+  <article class="paper">
+    
+    <div>
+      <div class="paper-title"><a href="https://academic.oup.com/ej/advance-article-abstract/doi/10.1093/ej/ueaf121/8316151" target="_blank">Grants vs. Loans: the Role of Financial Aid in College Major Choice</a></div>
+      <div class="paper-meta">w/ <a href="https://www.yannickreichlin.eu/home" target="_blank">Yannick Reichlin</a></div>
+      <div class="paper-venue">Forthcoming in <em>The Economic Journal</em></div>
+      <div class="paper-links">
+        <a href="papers/grants-vs-loans.pdf" target="_blank">Paper</a>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4581235" target="_blank">SSRN</a>
+        <a href="https://lafonte.eui.eu/2025/03/28/grants-versus-loans-how-financial-aid-shapes-degree-programme-choice/" target="_blank">EUI Blog</a>
+      </div>
+      <details>
+        <summary>Abstract</summary>
+        <p>Using administrative data from Chile, we analyze whether financing higher education through student loans or grants affects the college major choices of prospective university students. We exploit institutional arrangements that allocate either type of financing based on a standardized test to locally identify exogenous variation in access. Students who are marginally eligible for grants are more likely to enroll in high-paying fields such as STEM. We complement this reduced-form result with a discrete choice model that we estimate on data for narrowly defined higher education programs drawn from past graduates. The results indicate that, holding other program characteristics constant, grant recipients place higher value on fields with high earnings growth potential, while being less concerned about a lower graduation probability.</p>
+      </details>
+    </div>
+  </article>
+
+  <h3 class="subhead">Working Papers</h3>
+
+  <article class="paper">
+    
+    <div>
+      <div class="paper-title"><a href="papers/recruiting-better-teachers.pdf" target="_blank">Recruiting Better Teachers? Evidence from a Higher Education Reform in Chile</a></div>
+      <div class="paper-meta">w/ <a href="https://benjaminhattemer.com/" target="_blank">Benjamin Hattemer</a> &amp; <a href="https://sofiasierrav.com/" target="_blank">Sofia Sierra Vasquez</a></div>
+      <div class="paper-award">Winner of the <a href="https://www.aeet.eu/en/becas-luis-toharia/" target="_blank">Luis Toharia Grants</a> (XVI Labour Economics Meeting)</div>
+      <div class="paper-links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4874361" target="_blank">SSRN</a>
+        <a href="https://lafonte.eui.eu/2024/10/10/shaping-future-generations-analysing-teacher-recruitment-reform-in-chile/" target="_blank">EUI Blog</a>
+      </div>
+      <details>
+        <summary>Abstract</summary>
+        <p>This paper analyzes the impact of a recruitment policy in Chile designed to improve the quality of new teachers by incentivizing high-achieving and restricting low-achieving high school graduates from entering the teaching profession. We document that the reform effectively improved the average test scores of new teachers. We construct teacher value-added (TVA) measures and find that the reform increased TVA for mathematics but not for Spanish teachers. Finally, we show that most of the effect cannot be explained by new teachers' higher average test scores, but rather can be attributed to beneficial but unintended effects of the reform.</p>
+      </details>
+    </div>
+  </article>
+
+  <article class="paper">
+    
+    <div>
+      <div class="paper-title"><a href="papers/sibship-size.pdf" target="_blank">Sibship Size and Leaving the Parental Home</a></div>
+      <div class="paper-meta">w/ <a href="https://sites.google.com/view/emoracci/" target="_blank">Elia Moracci</a> &amp; <a href="https://albertoventurin.github.io/" target="_blank">Alberto Venturin</a></div>
+      <div class="paper-venue">Conditionally accepted at <em>Demography</em></div>
+      <div class="paper-links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4909059" target="_blank">SSRN</a>
+      </div>
+      <details>
+        <summary>Abstract</summary>
+        <p>We investigate whether the decision of young adults on when to leave the parental home is influenced by the number of siblings they have, in the context of European countries over the last seventy years. Using data from two large surveys and exploiting random variation in sibship size induced by twin births, we identify the causal effect of having an extra sibling on the timing of home-leaving. We find that one additional sibling speeds up the transition to independent living by roughly six months. We provide evidence that our results directly stem from a decrease in the value of intergenerational coresidence implied by having an extra sibling.</p>
+      </details>
+    </div>
+  </article>
+
+  <article class="paper">
+    
+    <div>
+      <div class="paper-title"><a href="papers/salary-increases-teacher-retention.pdf" target="_blank">Salary Increases and Skills-Based Bonuses: Teacher Retention and Workforce Composition</a></div>
+      <div class="paper-links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509038" target="_blank">SSRN</a>
+      </div>
+      <details>
+        <summary>Abstract</summary>
+        <p>This paper studies the interaction between unconditional salary increases and performance-based bonuses in determining teacher retention and workforce composition. I exploit Chile's Carrera Docente, a national reform that raised base salaries by approximately 20% for all public school teachers and introduced a career stage bonus linked to evaluation scores. Because the reform initially applied only to public schools, roughly half of the school system, I use a difference-in-differences design and find that exit rates fell by approximately 18%, but the effect is concentrated among low-value-added teachers. A regression discontinuity design at the career stage threshold shows that the performance-based bonus has no additional retention effect beyond the base salary increase. The retention gains of the reform are driven entirely by the base salary increase, with no additional contribution from the performance-based bonus.</p>
+      </details>
+    </div>
+  </article>
+
+  <article class="paper">
+    
+    <div>
+      <div class="paper-title"><a href="papers/fablab-stem.pdf" target="_blank">Innovative Learn-by-Doing Digital Education and Attitudes towards STEM: an RCT in Italian High Schools</a></div>
+      <div class="paper-meta">w/ <a href="https://www.alicedominici.com/" target="_blank">Alice Dominici</a>, <a href="https://www.martinaferracane.com/" target="_blank">Martina Ferracane</a> &amp; <a href="https://www.unibs.it/it/ugov/person/211024" target="_blank">Giovanni Abbiati</a></div>
+      <details>
+        <summary>Abstract</summary>
+        <p>We conducted a randomized controlled trial to test the effectiveness of creative STEM activities on the propensity to enrol in a STEM university course and career aspirations on a sample of 710 high school students in Italy. The activities covered courses on 3D printing, laser cutting, and programming, and were taught by FabLabs, non-profit digital fabrication laboratories with an innovative pedagogical approach grounded in learn-by-doing, problem-solving skills, and creativity. We find that access to these courses increased students' intentions to pursue STEM majors at university and STEM careers, possibly through an increased STEM self-efficacy, namely students' beliefs in their ability to pursue STEM studies.</p>
+      </details>
+    </div>
+  </article>
+
+  <h3 class="subhead">Work in Progress</h3>
+
+  <div class="wip">
+    <div class="wip-title">Profiling in Active Labour Market Policy: Evaluating Italy's New System for Sorting Job Seekers</div>
+    <div class="wip-meta">w/ <a href="https://sites.google.com/site/veronicarattini/home" target="_blank">Veronica Rattini</a>, <a href="https://sites.google.com/view/vincenzoscrutinio/home" target="_blank">Vincenzo Scrutinio</a>, <a href="https://sites.google.com/site/dennitommasi/" target="_blank">Denni Tommasi</a> &amp; <a href="https://sites.google.com/site/giuliozanella/" target="_blank">Giulio Zanella</a></div>
+  </div>
+</div>
+
+<!-- TEACHING -->
+<div id="page-teaching" class="page">
+  <div class="section-head">
+    <span class="label">§ Teaching</span>
+    
+  </div>
+  <div class="teaching-note">Teaching Assistant</div>
+
+  <div class="teaching-group">
+    <h3 class="subhead" style="margin-top: 0;">Ph.D. Level</h3>
+    <div class="teaching-row">
+      <div class="course"><strong>Econometrics I</strong><span class="meta">European University Institute · Instructor: Andrea Ichino</span></div>
+      <div class="years">2020 — 2024</div>
+    </div>
+    <div class="teaching-row">
+      <div class="course"><strong>Economics of Education</strong><span class="meta">European University Institute · Instructor: Ellen Greaves</span></div>
+      <div class="years">2023 — 2024</div>
+    </div>
+  </div>
+
+  <div class="teaching-group">
+    <h3 class="subhead">Master Level</h3>
+    <div class="teaching-row">
+      <div class="course"><strong>International Economics I</strong><span class="meta">Johns Hopkins University</span></div>
+      <div class="years">2023 — 2024</div>
+    </div>
+    <div class="teaching-row">
+      <div class="course"><strong>Macroeconomics I</strong><span class="meta">Università degli Studi di Napoli · Instructor: Tullio Jappelli</span></div>
+      <div class="years">2018 — 2019</div>
+    </div>
+  </div>
+
+  <div class="teaching-group">
+    <h3 class="subhead">Undergraduate Level</h3>
+    <div class="teaching-row">
+      <div class="course"><strong>Economics</strong> (Micro + Macro for Statistics)<span class="meta">University of Bologna · Instructor: Renata Bottazzi</span></div>
+      <div class="years">2023 — 2025</div>
+    </div>
+    <div class="teaching-row">
+      <div class="course"><strong>Microeconomics I</strong><span class="meta">Università degli Studi di Napoli · Instructor: Marco Pagnozzi</span></div>
+      <div class="years">2018 — 2019</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+</body>
+</html>
