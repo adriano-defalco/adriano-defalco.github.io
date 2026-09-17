@@ -157,6 +157,13 @@
   .teaching-row .meta { color: var(--dim); font-size: 11px; margin-top: 0.15rem; display: block; }
   .teaching-row .years { font-family: var(--mono); font-size: 10.5px; color: var(--dim); white-space: nowrap; letter-spacing: 0.08em; }
 
+  .ta-compact { margin-bottom: 1rem; opacity: 0.75; }
+  .ta-compact .subhead { font-size: 9.5px; margin: 1rem 0 0.3rem; }
+  .ta-compact .teaching-row { padding: 0.3rem 0; font-size: 11px; }
+  .ta-compact .teaching-row .course strong { font-size: 11px; font-weight: 400; }
+  .ta-compact .teaching-row .meta { font-size: 10px; margin-top: 0.05rem; }
+  .ta-compact .teaching-row .years { font-size: 9.5px; }
+
   footer { margin-top: 5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--dim); }
 </style>
 </head>
@@ -277,7 +284,7 @@
       </div>
       <details>
         <summary>Abstract</summary>
-        <p>This paper analyzes the impact of a recruitment policy in Chile designed to improve the quality of new teachers by incentivizing high-achieving and restricting low-achieving high school graduates from entering the teaching profession. We document that the reform effectively improved the average test scores of new teachers. We construct teacher value-added (TVA) measures and find that the reform increased TVA for mathematics but not for Spanish teachers. Finally, we show that most of the effect cannot be explained by new teachers' higher average test scores, but rather can be attributed to beneficial but unintended effects of the reform.</p>
+        <p>This paper analyzes the impact of a recruitment policy in Chile designed to improve the quality of new teachers by incentivizing high-achieving and restricting low-achieving high school graduates from entering the teaching profession. We document that the reform effectively improved the average test scores of new teachers. Using a teacher value-added (TVA) model, we find that the reform increased TVA for mathematics but not for Spanish teachers. Finally, we find that higher test scores account for only a small part of the effect for mathematics, which instead appears to operate through selection on unobserved teacher characteristics.</p>
       </details>
     </div>
   </article>
@@ -307,7 +314,7 @@
       </div>
       <details>
         <summary>Abstract</summary>
-        <p>This paper studies the interaction between unconditional salary increases and performance-based bonuses in determining teacher retention and workforce composition. I exploit Chile's Carrera Docente, a national reform that raised base salaries by approximately 20% for all public school teachers and introduced a career stage bonus linked to evaluation scores. Because the reform initially applied only to public schools, roughly half of the school system, I use a difference-in-differences design and find that exit rates fell by approximately 18%, but the effect is concentrated among low-value-added teachers. A regression discontinuity design at the career stage threshold shows that the performance-based bonus has no additional retention effect beyond the base salary increase. The retention gains of the reform are driven entirely by the base salary increase, with no additional contribution from the performance-based bonus.</p>
+        <p>This paper studies the combined effect of unconditional salary increases and performance-based bonuses on teacher retention and workforce composition. I exploit Chile's Carrera Docente, a national reform that raised base salaries by approximately 20% for all public school teachers and introduced a career stage bonus linked to evaluation scores. Because the reform initially applied only to public schools, roughly half of the school system, I use a difference-in-differences design and find that exit rates fell by approximately 18%. The effect, however, is concentrated among low-value-added teachers. A regression discontinuity design at the career stage threshold shows that the performance-based bonus has no detectable additional retention effect beyond the base salary increase.</p>
       </details>
     </div>
   </article>
@@ -346,9 +353,19 @@
     <span class="label">§ Teaching</span>
     
   </div>
-  <div class="teaching-note">Teaching Assistant</div>
+  <div class="teaching-note">Lecturer</div>
 
   <div class="teaching-group">
+    <h3 class="subhead" style="margin-top: 0;">Master Level</h3>
+    <div class="teaching-row">
+      <div class="course"><strong>Advanced Public Economics</strong><span class="meta">Lund University</span></div>
+      <div class="years">2026 —</div>
+    </div>
+  </div>
+
+  <div class="teaching-note" style="margin-top: 3rem; font-size: 9.5px; opacity: 0.7;">Teaching Assistant</div>
+
+  <div class="teaching-group ta-compact">
     <h3 class="subhead" style="margin-top: 0;">Ph.D. Level</h3>
     <div class="teaching-row">
       <div class="course"><strong>Econometrics I</strong><span class="meta">European University Institute · Instructor: Andrea Ichino</span></div>
@@ -360,7 +377,7 @@
     </div>
   </div>
 
-  <div class="teaching-group">
+  <div class="teaching-group ta-compact">
     <h3 class="subhead">Master Level</h3>
     <div class="teaching-row">
       <div class="course"><strong>International Economics I</strong><span class="meta">Johns Hopkins University</span></div>
@@ -372,7 +389,7 @@
     </div>
   </div>
 
-  <div class="teaching-group">
+  <div class="teaching-group ta-compact">
     <h3 class="subhead">Undergraduate Level</h3>
     <div class="teaching-row">
       <div class="course"><strong>Economics</strong> (Micro + Macro for Statistics)<span class="meta">University of Bologna · Instructor: Renata Bottazzi</span></div>
