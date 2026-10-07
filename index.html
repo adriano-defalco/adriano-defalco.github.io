@@ -123,10 +123,37 @@
   .paper-venue em { font-style: italic; }
 
   .paper-award { font-family: var(--mono); font-size: 10.5px; color: var(--bronze); font-style: italic; margin: 0.4rem 0; }
+
+  .editors-choice {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--bronze); font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .cite-toggle { cursor: pointer; }
+  .cite-block {
+    display: none; margin-top: 0.6rem; position: relative;
+  }
+  .cite-block.open { display: block; }
+  .cite-block pre {
+    font-family: var(--mono); font-size: 10.5px; line-height: 1.55;
+    background: var(--bg-alt); border-left: 2px solid var(--bronze);
+    padding: 0.75rem 1rem; margin: 0; white-space: pre-wrap;
+    color: var(--fg); overflow-x: auto;
+  }
+  .copy-btn {
+    position: absolute; top: 6px; right: 8px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--fg); background: var(--bg);
+    border: 1px solid var(--line); padding: 2px 7px;
+    cursor: pointer; transition: all 0.08s linear;
+  }
+  .copy-btn:hover { background: var(--fg); color: var(--bg); }
+  .copy-btn.copied { background: var(--bronze); color: var(--bg); border-color: var(--bronze); }
   .paper-award a { color: var(--dim); }
 
   .paper-links { display: flex; gap: 0.5rem; margin-top: 0.55rem; flex-wrap: wrap; }
-  .paper-links a { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; padding: 3px 8px; border: 1px solid var(--line); text-decoration: none; font-weight: 500; color: var(--fg); }
+  .paper-links a { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.13em; padding: 2px 6px; border: 1px solid var(--line); text-decoration: none; font-weight: 500; color: var(--fg); }
   .paper-links a:hover { background: var(--fg); color: var(--bg); }
 
   .paper-media { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; align-items: center; }
@@ -179,6 +206,26 @@
     if (activeLink) activeLink.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return false;
+  }
+
+  function toggleCite(el) {
+    const block = el.closest('.paper-links').nextElementSibling;
+    if (block && block.classList.contains('cite-block')) {
+      block.classList.toggle('open');
+    }
+  }
+
+  function copyBibtex(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.innerText;
+      btn.innerText = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerText = orig;
+        btn.classList.remove('copied');
+      }, 1500);
+    });
   }
 </script>
 
@@ -249,12 +296,28 @@
   <article class="paper">
     
     <div>
-      <div class="paper-title"><a href="https://academic.oup.com/ej/advance-article-abstract/doi/10.1093/ej/ueaf121/8316151" target="_blank">Grants vs. Loans: the Role of Financial Aid in College Major Choice</a></div>
+      <div class="paper-title"><a href="https://doi.org/10.1093/ej/ueaf121" target="_blank">Grants vs. Loans: the Role of Financial Aid in College Major Choice</a></div>
       <div class="paper-meta">w/ <a href="https://www.yannickreichlin.eu/home" target="_blank">Yannick Reichlin</a></div>
-      <div class="paper-venue">Forthcoming in <em>The Economic Journal</em></div>
+      <div class="paper-venue"><em>The Economic Journal</em>, 2026 <span class="editors-choice">(Editor's Choice article, October 2026 issue)</span></div>
       <div class="paper-links">
-        <a href="papers/grants-vs-loans.pdf" target="_blank">Paper</a>
+        <a href="https://doi.org/10.1093/ej/ueaf121" target="_blank">Paper</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4581235" target="_blank">SSRN</a>
+        <a href="#" class="cite-toggle" onclick="toggleCite(this); return false;">Cite</a>
+      </div>
+      <div class="cite-block">
+<pre id="bibtex-grants">@article{DeFalcoReichlin2026,
+  author  = {De Falco, Adriano and Reichlin, Yannick},
+  title   = {Grants Versus Loans: The Role of Financial Aid in College Major Choice},
+  journal = {The Economic Journal},
+  volume  = {136},
+  number  = {679},
+  pages   = {2253--2285},
+  month   = {10},
+  year    = {2026},
+  doi     = {10.1093/ej/ueaf121},
+  url     = {https://doi.org/10.1093/ej/ueaf121}
+}</pre>
+        <button class="copy-btn" onclick="copyBibtex('bibtex-grants', this)">Copy</button>
       </div>
       <div class="paper-media">
         <span class="media-label">Coverage</span>
