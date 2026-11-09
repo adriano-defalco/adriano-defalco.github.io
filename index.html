@@ -21,6 +21,32 @@
     --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161616;
+      --bg-alt: #242424;
+      --fg: #e8e4d9;
+      --dim: #999085;
+      --accent: #7ba7dc;
+      --bronze: #d19a4f;
+      --line: #e8e4d9;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161616;
+    --bg-alt: #242424;
+    --fg: #e8e4d9;
+    --dim: #999085;
+    --accent: #7ba7dc;
+    --bronze: #d19a4f;
+    --line: #e8e4d9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lund-logo { filter: brightness(0) invert(0.93); }
+  }
+  :root[data-theme="dark"] .lund-logo { filter: brightness(0) invert(0.93); }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -52,12 +78,15 @@
   .topbar nav a:hover { background: transparent; color: var(--bronze); text-decoration: none; }
   .topbar nav a.active { color: var(--bronze); }
   .topbar nav a.active::before { content: "■ "; color: var(--bronze); font-size: 8px; vertical-align: middle; }
+  .topbar nav a.theme-toggle { font-size: 14px; letter-spacing: 0; margin-left: 1.5rem; }
+  .topbar nav a.theme-toggle::before { content: ""; }
+  .topbar nav a.theme-toggle:hover { color: var(--accent); }
   @media (max-width: 560px) {
     .topbar { padding: 0.75rem 1rem; font-size: 10px; }
     .topbar nav a { margin-left: 1rem; }
   }
 
-  main { max-width: 900px; margin: 0 auto; padding: 3.5rem 2.5rem 6rem; }
+  main { max-width: 1050px; margin: 0 auto; padding: 3.5rem 2.5rem 6rem; }
   @media (max-width: 560px) { main { padding: 2rem 1.25rem 4rem; } }
 
   .page { display: none; animation: fadeIn 0.35s ease forwards; }
@@ -112,22 +141,24 @@
 
   .paper { padding: 1.1rem 0; border-bottom: 1px dashed rgba(22,22,22,0.3); }
   .paper:last-child { border-bottom: none; }
-  .paper-title { font-family: var(--mono); font-size: 12.5px; font-weight: 500; line-height: 1.45; margin-bottom: 0.4rem; }
+  .paper-title { font-family: var(--mono); font-size: 13.5px; font-weight: 500; line-height: 1.45; margin-bottom: 0.4rem; text-wrap: balance; }
   .paper-title a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
   .paper-title a:hover { background: var(--accent); color: var(--bg); }
 
   .paper-meta { font-size: 11px; color: var(--dim); margin-bottom: 0.2rem; }
   .paper-meta a { color: var(--dim); }
 
-  .paper-venue { font-family: var(--mono); font-size: 11px; color: var(--bronze); font-style: italic; margin-bottom: 0.5rem; }
-  .paper-venue em { font-style: italic; }
+  .paper-venue { font-family: var(--mono); font-size: 13.5px; color: var(--fg); font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 0.01em; }
+  .paper-venue em { font-style: italic; font-weight: 700; }
+  .paper-venue .venue-note { font-size: 10.5px; color: var(--fg); font-style: italic; letter-spacing: 0.02em; margin-left: 0.3rem; }
 
   .paper-award { font-family: var(--mono); font-size: 10.5px; color: var(--bronze); font-style: italic; margin: 0.4rem 0; }
 
   .editors-choice {
-    font-family: var(--mono); font-size: 10px;
+    font-family: var(--mono); font-size: 10.5px;
     color: var(--bronze); font-style: italic;
-    letter-spacing: 0.02em;
+    font-weight: 400; letter-spacing: 0.02em;
+    margin-left: 0.3rem;
   }
 
   .cite-toggle { cursor: pointer; }
@@ -152,23 +183,38 @@
   .copy-btn.copied { background: var(--bronze); color: var(--bg); border-color: var(--bronze); }
   .paper-award a { color: var(--dim); }
 
-  .paper-links { display: flex; gap: 0.5rem; margin-top: 0.55rem; flex-wrap: wrap; }
-  .paper-links a { font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.13em; padding: 2px 6px; border: 1px solid var(--line); text-decoration: none; font-weight: 500; color: var(--fg); }
-  .paper-links a:hover { background: var(--fg); color: var(--bg); }
+  .paper-links { display: flex; gap: 0.9rem; margin-top: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .paper-links a {
+    font-family: var(--mono); font-size: 10px;
+    text-transform: lowercase; letter-spacing: 0.02em;
+    padding: 0; border: none;
+    text-decoration: none; font-weight: 400; color: var(--accent);
+  }
+  .paper-links a::before {
+    content: "›"; color: var(--bronze); margin-right: 0.3rem;
+    font-weight: 400;
+  }
+  .paper-links a:hover { background: transparent; color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
 
-  .paper-media { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; align-items: center; }
-  .paper-media .media-label { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--bronze); margin-right: 0.35rem; }
-  .paper-media a { font-family: var(--mono); font-size: 11px; font-style: italic; color: var(--bronze); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .paper-media { display: flex; gap: 0.9rem; margin-top: 0.4rem; flex-wrap: wrap; align-items: center; }
+  .paper-media .media-label { font-family: var(--mono); font-size: 10px; text-transform: lowercase; letter-spacing: 0.02em; color: var(--bronze); margin-right: 0; font-style: italic; }
+  .paper-media a { font-family: var(--mono); font-size: 10px; color: var(--accent); text-decoration: none; text-transform: lowercase; letter-spacing: 0.02em; }
+  .paper-media a::before { content: "›"; color: var(--bronze); margin-right: 0.3rem; }
+  .paper-media a:hover { background: transparent; color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
   .paper-media a:hover { background: var(--bronze); color: var(--bg); text-decoration: none; }
   .paper-links a:hover { background: var(--fg); color: var(--bg); }
 
   details { margin-top: 0.7rem; }
-  details summary { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.18em; cursor: pointer; color: var(--fg); list-style: none; user-select: none; font-weight: 500; }
-  details summary::-webkit-details-marker { display: none; }
-  details summary::before { content: "[ + ] "; color: var(--bronze); font-weight: 400; }
-  details[open] summary::before { content: "[ − ] "; }
-  details[open] summary { margin-bottom: 0.65rem; }
-  details p { font-family: var(--mono); font-size: 11.5px; line-height: 1.7; color: var(--fg); padding: 1rem 1.2rem; border-left: 2px solid var(--bronze); background: var(--bg-alt); }
+  .abstract-toggle { cursor: pointer; }
+  .abstract-block {
+    display: none; margin-top: 0.5rem;
+  }
+  .abstract-block.open { display: block; }
+  .abstract-block p {
+    font-family: var(--mono); font-size: 11.5px; line-height: 1.7; color: var(--fg);
+    padding: 1rem 1.2rem; border-left: 2px solid var(--bronze); background: var(--bg-alt);
+    margin: 0;
+  }
 
   .wip { padding: 1rem 0; border-bottom: 1px dashed rgba(22,22,22,0.3); }
   .wip:last-child { border-bottom: none; }
@@ -197,6 +243,28 @@
 <body>
 
 <script>
+  // Theme: initialize from saved preference (if any)
+  (function() {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch(e) {}
+  })();
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let next;
+    if (current === 'dark') next = 'light';
+    else if (current === 'light') next = 'dark';
+    else next = prefersDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  }
+
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.getElementById('page-' + name);
@@ -213,6 +281,15 @@
     if (block && block.classList.contains('cite-block')) {
       block.classList.toggle('open');
     }
+  }
+
+  function toggleAbstract(el) {
+    // Cerca il prossimo .abstract-block dopo paper-links (può essere dopo cite-block)
+    let sib = el.closest('.paper-links').nextElementSibling;
+    while (sib && !sib.classList.contains('abstract-block')) {
+      sib = sib.nextElementSibling;
+    }
+    if (sib) sib.classList.toggle('open');
   }
 
   function copyBibtex(id, btn) {
@@ -244,6 +321,7 @@
     <a onclick="showPage('home')" data-page="home" class="active">Home</a>
     <a onclick="showPage('research')" data-page="research">Research</a>
     <a onclick="showPage('teaching')" data-page="teaching">Teaching</a>
+    <a class="theme-toggle" onclick="toggleTheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode">◐</a>
   </nav>
 </div>
 
@@ -294,42 +372,35 @@
   <h3 class="subhead">Publications</h3>
 
   <article class="paper">
-    
+
     <div>
       <div class="paper-title"><a href="https://doi.org/10.1093/ej/ueaf121" target="_blank">Grants vs. Loans: the Role of Financial Aid in College Major Choice</a></div>
       <div class="paper-meta">w/ <a href="https://www.yannickreichlin.eu/home" target="_blank">Yannick Reichlin</a></div>
       <div class="paper-venue"><em>The Economic Journal</em>, 2026 <span class="editors-choice">(Editor's Choice article, October 2026 issue)</span></div>
+
       <div class="paper-links">
-        <a href="https://academic.oup.com/ej/article-pdf/136/679/2253/65236950/ueaf121.pdf" target="_blank">Paper</a>
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract(this); return false;">Abstract</a>
+        <a href="https://doi.org/10.1093/ej/ueaf121" target="_blank">Paper</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4581235" target="_blank">SSRN</a>
         <a href="#" class="cite-toggle" onclick="toggleCite(this); return false;">Cite</a>
-      </div>
+        </div>
       <div class="cite-block">
-<pre id="bibtex-grants">@article{10.1093/ej/ueaf121,
-    author = {De Falco, Adriano and Reichlin, Yannick},
-    title = {Grants Versus Loans: The Role of Financial Aid in College Major Choice},
-    journal = {The Economic Journal},
-    volume = {136},
-    number = {679},
-    pages = {2253-2285},
-    year = {2026},
-    month = {10},
-    issn = {0013-0133},
-    doi = {10.1093/ej/ueaf121},
-    url = {https://doi.org/10.1093/ej/ueaf121},
-    eprint = {https://academic.oup.com/ej/article-pdf/136/679/2253/65236950/ueaf121.pdf},
+<pre id="bibtex-grants">@article{DeFalcoReichlin2026,
+  author  = {De Falco, Adriano and Reichlin, Yannick},
+  title   = {Grants Versus Loans: The Role of Financial Aid in College Major Choice},
+  journal = {The Economic Journal},
+  year    = {2026},
+  doi     = {10.1093/ej/ueaf121},
+  url     = {https://doi.org/10.1093/ej/ueaf121}
 }</pre>
         <button class="copy-btn" onclick="copyBibtex('bibtex-grants', this)">Copy</button>
       </div>
+      <div class="abstract-block"><p>Using administrative data from Chile, we analyze whether financing higher education through student loans or grants affects the college major choices of prospective university students. We exploit institutional arrangements that allocate either type of financing based on a standardized test to locally identify exogenous variation in access. Students who are marginally eligible for grants are more likely to enroll in high-paying fields such as STEM. We complement this reduced-form result with a discrete choice model that we estimate on data for narrowly defined higher education programs drawn from past graduates. The results indicate that, holding other program characteristics constant, grant recipients place higher value on fields with high earnings growth potential, while being less concerned about a lower graduation probability.</p></div>
       <div class="paper-media">
         <span class="media-label">Coverage</span>
         <a href="https://lafonte.eui.eu/2025/03/28/grants-versus-loans-how-financial-aid-shapes-degree-programme-choice/" target="_blank">EUI Blog</a>
       </div>
-      <details>
-        <summary>Abstract</summary>
-        <p>Using administrative data from Chile, we analyze whether financing higher education through student loans or grants affects the college major choices of prospective university students. We exploit institutional arrangements that allocate either type of financing based on a standardized test to locally identify exogenous variation in access. Students who are marginally eligible for grants are more likely to enroll in high-paying fields such as STEM. We complement this reduced-form result with a discrete choice model that we estimate on data for narrowly defined higher education programs drawn from past graduates. The results indicate that, holding other program characteristics constant, grant recipients place higher value on fields with high earnings growth potential, while being less concerned about a lower graduation probability.</p>
-      </details>
-    </div>
+</div>
   </article>
 
   <article class="paper">
@@ -337,15 +408,14 @@
     <div>
       <div class="paper-title"><a href="papers/sibship-size.pdf" target="_blank">Sibship Size and Leaving the Parental Home</a></div>
       <div class="paper-meta">w/ <a href="https://www.eliamoracci.com/" target="_blank">Elia Moracci</a> &amp; <a href="https://albertoventurin.github.io/" target="_blank">Alberto Venturin</a></div>
-      <div class="paper-venue">Forthcoming in <em>Demography</em></div>
+      <div class="paper-venue"><em>Demography</em> <span class="venue-note">(forthcoming)</span></div>
+
       <div class="paper-links">
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract(this); return false;">Abstract</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4909059" target="_blank">SSRN</a>
-      </div>
-      <details>
-        <summary>Abstract</summary>
-        <p>We investigate whether the decision of young adults on when to leave the parental home is influenced by the number of siblings they have, in the context of European countries over the last seventy years. Using data from two large surveys and exploiting random variation in sibship size induced by twin births, we identify the causal effect of having an extra sibling on the timing of home-leaving. We find that one additional sibling speeds up the transition to independent living by roughly six months. We provide evidence that our results directly stem from a decrease in the value of intergenerational coresidence implied by having an extra sibling.</p>
-      </details>
-    </div>
+        </div>
+      <div class="abstract-block"><p>We investigate whether the decision of young adults on when to leave the parental home is influenced by the number of siblings they have, in the context of European countries over the last seventy years. Using data from two large surveys and exploiting random variation in sibship size induced by twin births, we identify the causal effect of having an extra sibling on the timing of home-leaving. We find that one additional sibling speeds up the transition to independent living by roughly six months. We provide evidence that our results directly stem from a decrease in the value of intergenerational coresidence implied by having an extra sibling.</p></div>
+</div>
   </article>
 
   <h3 class="subhead">Working Papers</h3>
@@ -356,32 +426,30 @@
       <div class="paper-title"><a href="papers/recruiting-better-teachers.pdf" target="_blank">Recruiting Better Teachers? Evidence from a Higher Education Reform in Chile</a></div>
       <div class="paper-meta">w/ <a href="https://benjaminhattemer.com/" target="_blank">Benjamin Hattemer</a> &amp; <a href="https://sofiasierrav.com/" target="_blank">Sofia Sierra Vasquez</a></div>
       <div class="paper-award">Winner of the <a href="https://www.aeet.eu/en/becas-luis-toharia/" target="_blank">Luis Toharia Grants</a> (XVI Labour Economics Meeting)</div>
+
       <div class="paper-links">
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract(this); return false;">Abstract</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4874361" target="_blank">SSRN</a>
-      </div>
+        </div>
+      <div class="abstract-block"><p>This paper analyzes the impact of a recruitment policy in Chile designed to improve the quality of new teachers by incentivizing high-achieving and restricting low-achieving high school graduates from entering the teaching profession. We document that the reform effectively improved the average test scores of new teachers. Using a teacher value-added (TVA) model, we find that the reform increased TVA for mathematics but not for Spanish teachers. Finally, we find that higher test scores account for only a small part of the effect for mathematics, which instead appears to operate through selection on unobserved teacher characteristics.</p></div>
       <div class="paper-media">
         <span class="media-label">Coverage</span>
         <a href="https://lafonte.eui.eu/2024/10/10/shaping-future-generations-analysing-teacher-recruitment-reform-in-chile/" target="_blank">EUI Blog</a>
       </div>
-      <details>
-        <summary>Abstract</summary>
-        <p>This paper analyzes the impact of a recruitment policy in Chile designed to improve the quality of new teachers by incentivizing high-achieving and restricting low-achieving high school graduates from entering the teaching profession. We document that the reform effectively improved the average test scores of new teachers. Using a teacher value-added (TVA) model, we find that the reform increased TVA for mathematics but not for Spanish teachers. Finally, we find that higher test scores account for only a small part of the effect for mathematics, which instead appears to operate through selection on unobserved teacher characteristics.</p>
-      </details>
-    </div>
+</div>
   </article>
 
   <article class="paper">
 
     <div>
       <div class="paper-title"><a href="papers/salary-increases-teacher-retention.pdf" target="_blank">Salary Increases and Skills-Based Bonuses: Teacher Retention and Workforce Composition</a></div>
+
       <div class="paper-links">
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract(this); return false;">Abstract</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509038" target="_blank">SSRN</a>
-      </div>
-      <details>
-        <summary>Abstract</summary>
-        <p>This paper studies the combined effect of unconditional salary increases and performance-based bonuses on teacher retention and workforce composition. I exploit Chile's Carrera Docente, a national reform that raised base salaries by approximately 20% for all public school teachers and introduced a career stage bonus linked to evaluation scores. Because the reform initially applied only to public schools, roughly half of the school system, I use a difference-in-differences design and find that exit rates fell by approximately 18%. The effect, however, is concentrated among low-value-added teachers. A regression discontinuity design at the career stage threshold shows that the performance-based bonus has no detectable additional retention effect beyond the base salary increase.</p>
-      </details>
-    </div>
+        </div>
+      <div class="abstract-block"><p>This paper studies the combined effect of unconditional salary increases and performance-based bonuses on teacher retention and workforce composition. I exploit Chile's Carrera Docente, a national reform that raised base salaries by approximately 20% for all public school teachers and introduced a career stage bonus linked to evaluation scores. Because the reform initially applied only to public schools, roughly half of the school system, I use a difference-in-differences design and find that exit rates fell by approximately 18%. The effect, however, is concentrated among low-value-added teachers. A regression discontinuity design at the career stage threshold shows that the performance-based bonus has no detectable additional retention effect beyond the base salary increase.</p></div>
+</div>
   </article>
 
   <article class="paper">
@@ -389,18 +457,17 @@
     <div>
       <div class="paper-title"><a href="papers/fablab-stem.pdf" target="_blank">Innovative Learn-by-Doing Digital Education and Attitudes towards STEM: an RCT in Italian High Schools</a></div>
       <div class="paper-meta">w/ <a href="https://www.alicedominici.com/" target="_blank">Alice Dominici</a>, <a href="https://www.martinaferracane.com/" target="_blank">Martina Ferracane</a> &amp; <a href="https://www.unibs.it/it/ugov/person/211024" target="_blank">Giovanni Abbiati</a></div>
+
       <div class="paper-links">
+        <a href="#" class="abstract-toggle" onclick="toggleAbstract(this); return false;">Abstract</a>
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5412314" target="_blank">SSRN</a>
-      </div>
+        </div>
+      <div class="abstract-block"><p>We conducted a randomized controlled trial to test the effectiveness of creative STEM activities on the propensity to enrol in a STEM university course and career aspirations on a sample of 710 high school students in Italy. The activities covered courses on 3D printing, laser cutting, and programming, and were taught by FabLabs, non-profit digital fabrication laboratories with an innovative pedagogical approach grounded in learn-by-doing, problem-solving skills, and creativity. We find that access to these courses increased students' intentions to pursue STEM majors at university and STEM careers, possibly through an increased STEM self-efficacy, namely students' beliefs in their ability to pursue STEM studies.</p></div>
       <div class="paper-media">
         <span class="media-label">Coverage</span>
         <a href="https://www.eui.eu/news-hub?id=hands-on-stem-education-in-high-schools-an-interview-with-alice-dominici&lang=en-GB" target="_blank">EUI News</a>
       </div>
-      <details>
-        <summary>Abstract</summary>
-        <p>We conducted a randomized controlled trial to test the effectiveness of creative STEM activities on the propensity to enrol in a STEM university course and career aspirations on a sample of 710 high school students in Italy. The activities covered courses on 3D printing, laser cutting, and programming, and were taught by FabLabs, non-profit digital fabrication laboratories with an innovative pedagogical approach grounded in learn-by-doing, problem-solving skills, and creativity. We find that access to these courses increased students' intentions to pursue STEM majors at university and STEM careers, possibly through an increased STEM self-efficacy, namely students' beliefs in their ability to pursue STEM studies.</p>
-      </details>
-    </div>
+</div>
   </article>
 
   <h3 class="subhead">Work in Progress</h3>
