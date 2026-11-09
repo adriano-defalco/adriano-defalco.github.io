@@ -149,14 +149,14 @@
   .paper-meta a { color: var(--dim); }
 
   .paper-venue { font-family: var(--mono); font-size: 13.5px; color: var(--fg); font-weight: 400; margin-bottom: 0.5rem; letter-spacing: 0.01em; }
-  .paper-venue em { font-style: italic; font-weight: 700; }
+  .paper-venue em { font-style: italic; font-weight: 700; color: var(--accent); }
   .paper-venue .venue-note { font-size: 10.5px; color: var(--fg); font-style: italic; letter-spacing: 0.02em; margin-left: 0.3rem; }
 
   .paper-award { font-family: var(--mono); font-size: 10.5px; color: var(--bronze); font-style: italic; margin: 0.4rem 0; }
 
   .editors-choice {
     font-family: var(--mono); font-size: 10.5px;
-    color: var(--bronze); font-style: italic;
+    color: var(--dim); font-style: italic;
     font-weight: 400; letter-spacing: 0.02em;
     margin-left: 0.3rem;
   }
@@ -385,13 +385,19 @@
         <a href="#" class="cite-toggle" onclick="toggleCite(this); return false;">Cite</a>
         </div>
       <div class="cite-block">
-<pre id="bibtex-grants">@article{DeFalcoReichlin2026,
-  author  = {De Falco, Adriano and Reichlin, Yannick},
-  title   = {Grants Versus Loans: The Role of Financial Aid in College Major Choice},
-  journal = {The Economic Journal},
-  year    = {2026},
-  doi     = {10.1093/ej/ueaf121},
-  url     = {https://doi.org/10.1093/ej/ueaf121}
+<pre id="bibtex-grants">@article{10.1093/ej/ueaf121,
+    author = {De Falco, Adriano and Reichlin, Yannick},
+    title = {Grants Versus Loans: The Role of Financial Aid in College Major Choice},
+    journal = {The Economic Journal},
+    volume = {136},
+    number = {679},
+    pages = {2253-2285},
+    year = {2026},
+    month = {10},
+    issn = {0013-0133},
+    doi = {10.1093/ej/ueaf121},
+    url = {https://doi.org/10.1093/ej/ueaf121},
+    eprint = {https://academic.oup.com/ej/article-pdf/136/679/2253/65236950/ueaf121.pdf},
 }</pre>
         <button class="copy-btn" onclick="copyBibtex('bibtex-grants', this)">Copy</button>
       </div>
